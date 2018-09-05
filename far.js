@@ -12,6 +12,7 @@
     const DEFAULT_LARGEST_SIZE = null;
 
     let settings = null;
+    let mutationObserver = null;
 
     function init() {
         chrome.storage.sync.get(["hasBeenSetup"], function(result) {
@@ -26,12 +27,12 @@
                         console.log("An error occured: ", chrome.runtime.lastError.message);
                     }
                     else {
-                        updateSettings(resizeFonts);
+                        updateSettings(onSettingsUpdated);
                     }
                 });
             }
             else {
-                updateSettings(resizeFonts);
+                updateSettings(onSettingsUpdated);
             }
         });
     }
@@ -48,11 +49,36 @@
         });
     }
 
-    function resizeFonts() {
+    function onSettingsUpdated() {
+        resizeFonts(document.body.querySelectorAll("*"));
+        mutationObserver = new MutationObserver(onPageMutation);
+        mutationObserver.observe(document.body, {
+            attributes: false,
+            characterData: false,
+            childList: true,
+            subtree: true,
+            attributeOldValue: false,
+            characterDataOldValue: false
+        });
+    }
+
+    function onPageMutation(mutation_list) {
+        let elements = [];
+        for (let mutation of mutation_list) {
+            for (let node of mutation.addedNodes) {
+                elements.push(node);
+                elements.concat(Array.prototype.slice(node.querySelectorAll("*")));
+            }
+        }
+
+        resizeFonts(elements);
+    }
+
+    function resizeFonts(elements) {
         let resize_smallest = (typeof settings.smallest === "number");
         let resize_largest = (typeof settings.largest === "number");
 
-        document.body.querySelectorAll("*").forEach(function(element) {
+        elements.forEach(function(element) {
             let font_size_str = getComputedStyle(element).fontSize;
             if (font_size_str) {
                 let font_size = Number.parseFloat(font_size_str.substring(0, font_size_str.indexOf("px")));
