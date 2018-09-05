@@ -3,6 +3,10 @@
     "name": "Font Auto-resizer",
     "version": "1.0",
 
+    "icons": {
+        "48": "icon_48.png"
+    },
+
     "permissions": ["storage"],
 
     "options_ui": {
