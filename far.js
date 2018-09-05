@@ -66,8 +66,10 @@
         let elements = [];
         for (let mutation of mutation_list) {
             for (let node of mutation.addedNodes) {
-                elements.push(node);
-                elements.concat(Array.prototype.slice(node.querySelectorAll("*")));
+                if (node.nodeType === Node.ELEMENT_NODE) {
+                    elements.push(node);
+                    elements.concat(Array.prototype.slice(node.querySelectorAll("*")));
+                }
             }
         }
 
@@ -78,7 +80,7 @@
         let resize_smallest = (typeof settings.smallest === "number");
         let resize_largest = (typeof settings.largest === "number");
 
-        elements.forEach(function(element) {
+        for(let element of elements) {
             let font_size_str = getComputedStyle(element).fontSize;
             if (font_size_str) {
                 let font_size = Number.parseFloat(font_size_str.substring(0, font_size_str.indexOf("px")));
@@ -89,7 +91,7 @@
                     element.style.setProperty("font-size", settings.largest + "px", "important");
                 }
             }
-        });
+        }
     }
 
     init();
