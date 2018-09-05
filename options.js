@@ -18,7 +18,7 @@
          let value = e.target.value === "" ? "" : Number.parseFloat(e.target.value);
          if (value === "" || (value !== Number.NaN && value > 0.0)) {
              let save_obj = {};
-             save_obj[e.target.dataset.setting] = e.target.value;
+             save_obj[e.target.dataset.setting] = value;
              chrome.storage.sync.set(save_obj, function() {
                  if (chrome.runtime.lastError) {
                      console.log("An error occured: ", chrome.runtime.lastError.message);
