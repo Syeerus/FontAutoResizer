@@ -1,0 +1,64 @@
+.container
+{
+    display: block;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+.note
+{
+    font-size: 11px;
+}
+
+.fields-container
+{
+    margin-top: 20px;
+}
+
+.field-box
+{
+    display: table-row;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+.field-box div
+{
+    display: table-cell;
+    padding-bottom: 10px;
+}
+
+.field-box label
+{
+    padding-right: 10px;
+}
+
+.field-box input[type="text"]
+{
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.field-success
+{
+    background-color: #97d8a5
+}
+
+.field-error
+{
+    background-color: #e57979
+}
+
+.success-message
+{
+    display: inline-block;
+    border: 2px solid green;
+    color: green;
+    padding: 5px;
+}
+
+.hidden
+{
+    visibility: hidden;
+}

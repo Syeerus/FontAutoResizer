@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="options.css">
+        <script type="text/javascript" src="options.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>Font Auto-resizer Options</h2>
+
+            <span class="note">* Leave blank to disable setting</span>
+            <div class="fields-container">
+                <div class="field-box">
+                    <div><label for="txtSmallest">Smallest Size:</label></div>
+                    <div><input id="txtSmallest" type="text" autocomplete="off" maxlength="3" size="3" data-setting="smallest"> px</div>
+                </div>
+
+                <div class="field-box">
+                    <div><label for="txtLargest">Largest Size:</label></div>
+                    <div><input id="txtLargest" type="text" autocomplete="off" maxlength="3" size="3" data-setting="largest"> px</div>
+                </div>
+            </div>
+
+            <div id="clearSuccessMsg" class="success-message hidden" style="margin-top: 50px">Settings cleared successfully.</div>
+            <div>
+                <button id="btnClearSettings" style="margin-top: 10px">Clear Settings</button>
+            </div>
+        </div>
+    </body>
+</html>

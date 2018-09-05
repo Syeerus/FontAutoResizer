@@ -1,0 +1,24 @@
+{
+    "manifest_version": 2,
+    "name": "Font Auto-resizer",
+    "version": "1.0",
+
+    "permissions": ["storage"],
+
+    "options_ui": {
+        "page": "options.html"
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["far.js"]
+        }
+    ],
+
+    "applications": {
+        "gecko": {
+            "id": "{3711b0ae-bc5d-4002-acc6-81efa015dc40}"
+        }
+    }
+}
