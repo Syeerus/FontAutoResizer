@@ -84,7 +84,7 @@
             let font_size_str = getComputedStyle(element).fontSize;
             if (font_size_str) {
                 let font_size = Number.parseFloat(font_size_str.substring(0, font_size_str.indexOf("px")));
-                if (resize_smallest && font_size < settings.smallest) {
+                if (resize_smallest && font_size !== 0 && font_size < settings.smallest) {
                     element.style.setProperty("font-size", settings.smallest + "px", "important");
                 }
                 else if (resize_largest && font_size > settings.largest) {
